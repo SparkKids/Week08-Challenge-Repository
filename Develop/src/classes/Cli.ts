@@ -127,7 +127,7 @@ class Cli {
           parseInt(answers.year),
           parseInt(answers.weight),
           parseInt(answers.topSpeed),
-          []
+          [] //Wheels array (defaulted to empty array)
         );
         // push the car to the vehicles array
         this.vehicles.push(car);
@@ -200,7 +200,7 @@ class Cli {
         // TODO: perform actions on the truck
         // 03/12/2025 SGray - Done
         this.performActions();
-        
+
       });
   }
 
@@ -240,6 +240,11 @@ class Cli {
         },
         {
           type: 'input',
+          name: 'sidecar',
+          message: 'Does the motorbike have a sidecar? (yes/no)',
+        }, 
+        {
+          type: 'input',
           name: 'frontWheelDiameter',
           message: 'Enter Front Wheel Diameter',
         },
@@ -261,6 +266,8 @@ class Cli {
       ])
       .then((answers) => {
         // TODO: Use the answers object to pass the required properties to the Motorbike constructor
+        // 03/12/2025 SGray - Done
+        //03/14/2025 SGray - Added sidecar to the motorbike
         const motorbike = new Motorbike(
           Cli.generateVin(),
           answers.color,
@@ -269,11 +276,12 @@ class Cli {
           parseInt(answers.year),
           parseInt(answers.weight),
           parseInt(answers.topSpeed),
-          []//Wheels array (defaulted to empty array)
+          [],//Wheels array (defaulted to empty array)
+          answers.sidecar.toLowerCase() === 'yes' ? true : false
         );
         // TODO: push the motorbike to the vehicles array
         // 03/12/2025 SGray - Done
-          this.vehicles.push(motorbike);
+        this.vehicles.push(motorbike);
         // TODO: set the selectedVehicleVin to the vin of the motorbike
         // 03/12/2025 SGray - Done
         this.selectedVehicleVin = motorbike.vin;
@@ -311,11 +319,11 @@ class Cli {
           this.performActions();
           return;
         } else {
-        // TODO: if it is not, tow the selected vehicle then perform actions on the truck 
-        // to allow the user to select another action
-        // 03/12/2025 SGray - Done Added else statement to tow the selected vehicle
-        truck.tow(answers.vehicleToTow);
-        this.performActions();
+          // TODO: if it is not, tow the selected vehicle then perform actions on the truck 
+          // to allow the user to select another action
+          // 03/12/2025 SGray - Done Added else statement to tow the selected vehicle
+          truck.tow(answers.vehicleToTow);
+          this.performActions();
         }
       });
   }
@@ -413,8 +421,6 @@ class Cli {
           // 03/12/2025 SGray - Done Added check for truck
           const selectedVehicle = this.vehicles.find(vehicle => vehicle.vin === this.selectedVehicleVin);
           if (selectedVehicle instanceof Truck) {
-            console.log("Selected truck: " + selectedVehicle.vin);
-            console.log("Calling findVehicleToTow method...");
             // TODO: Call the findVehicleToTow method to find a vehicle to tow 
             // and pass the selected truck as an argument. 
             // 03/12/2025 SGray - Done - Call the findVehicleToTow method

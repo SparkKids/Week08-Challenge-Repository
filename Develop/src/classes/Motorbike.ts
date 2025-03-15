@@ -10,6 +10,7 @@ class Motorbike extends Vehicle {
   // TODO: The types should be as follows: vin (string), color (string), make (string), 
   // model (string), year (number), weight (number), topSpeed (number), wheels (Wheel[])
   // 03/12/2025 SGray Done
+  // 03/14/2025 SGray - Added sidecar property
   vin: string;
   color: string;
   make: string;
@@ -18,9 +19,20 @@ class Motorbike extends Vehicle {
   weight: number;
   topSpeed: number;
   wheels: Wheel[];
+  sidecar: boolean;
   // TODO: Create a constructor that accepts the properties of the Motorbike class
   // 11/28/2024 SGray Done
-  constructor(vin: string, color: string, make: string, model: string, year: number, weight: number, topSpeed: number, wheels: Wheel[]) {
+  constructor(
+    vin: string, 
+    color: string, 
+    make: string, 
+    model: string, 
+    year: number, 
+    weight: number, 
+    topSpeed: number, 
+    wheels: Wheel[],
+    sidecar: boolean 
+  ) {
     // TODO: The constructor should call the constructor of the parent class, Vehicle
     //11/28/2024 SGray Done
     super();
@@ -32,7 +44,8 @@ class Motorbike extends Vehicle {
     this.year = year;
     this.weight = weight;
     this.topSpeed = topSpeed;
-    this.wheels = wheels;
+    this.sidecar = sidecar;
+    
 
     // TODO: The constructor should check if the wheels array has 2 elements and 
     // create 2 new default Wheel objects if it does not
@@ -40,7 +53,6 @@ class Motorbike extends Vehicle {
     if (wheels.length !== 2) {
       this.wheels = [new Wheel(), new Wheel()];
     } else {
-      console.log('Motorbike constructor: Using provided wheels array');
       this.wheels = wheels;
     }
 }
@@ -61,9 +73,21 @@ class Motorbike extends Vehicle {
   // TODO: The details should include the VIN, make, model, year, weight, top speed, color, 
   // and wheels
   // 03/12/2025 SGray Done
-  console.log(`The motorcycles VIN is ${this.vin}, the make is ${this.make}, and the model is ${this.model}.
-      the year is ${this.year}, it has a weight of ${this.weight}, it has a top speed of ${this.topSpeed}
-      The color is ${this.color}. Wheels:`);
+  // 03/14/2025 SGray - Added sidecar to the details
+  console.log(`Motorbike Details:`);
+  console.log(`VIN: ${this.vin}`);
+  console.log(`Color: ${this.color}`);
+  console.log(`Make: ${this.make}`);
+  console.log(`Model: ${this.model}`);
+  console.log(`Year: ${this.year}`);
+  console.log(`Weight: ${this.weight} lbs`);
+  console.log(`Top Speed: ${this.topSpeed} mph`);
+  if (this.sidecar) {
+    console.log(`Sidecar: Yes`);
+  } else {
+    console.log(`Sidecar: No`);
+  }
+
       // Print details of the wheels
       console.log(
         `Wheel 1: ${this.wheels[0].getDiameter} inch with a ${this.wheels[0].getTireBrand} tire`

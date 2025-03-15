@@ -26,9 +26,16 @@ class Truck extends Vehicle implements AbleToTow {
 
   // TODO: Create a constructor that accepts the properties of the Truck class
   // 02/13/2025 SGray - Done
-  constructor(vin: string, color: string, make: string, model: string,
-    year: number, weight: number, topSpeed: number,
-    wheels: Wheel[], towingCapacity: number) {
+  constructor(
+    vin: string, 
+    color: string, 
+    make: string, 
+    model: string,
+    year: number, 
+    weight: number, 
+    topSpeed: number,
+    wheels: Wheel[], 
+    towingCapacity: number) {
     // TODO: The constructor should call the constructor of the parent class, Vehicle
     // 02/13/2025 SGray - Done
     super()
@@ -41,7 +48,7 @@ class Truck extends Vehicle implements AbleToTow {
     this.year = year;
     this.weight = weight;
     this.topSpeed = topSpeed;
-    this.wheels = wheels;
+    
     // TODO: The constructor should check if the wheels array has 4 elements and create 4 new default Wheel objects if it does not
     // Check if the wheels array has 4 elements
     // If not, create 4 new Wheel objects
@@ -50,7 +57,6 @@ class Truck extends Vehicle implements AbleToTow {
     if (wheels.length !== 4) {
       this.wheels = [new Wheel(), new Wheel(), new Wheel(), new Wheel()];
     } else {
-      console.log('Truck constructor: Using provided wheels array');
       this.wheels = wheels;
     }
     this.towingCapacity = towingCapacity;
